@@ -2,7 +2,7 @@
     "name": "walkwizus/chronorelais",
     "description": "Chronopost Official Magento2 extension",
     "require": {
-        "php": "~7.0.0|~7.1.0|~7.2.0"
+        "php": ">=7.3"
     },
     "type": "magento2-module",
     "version": "1.1.4",
