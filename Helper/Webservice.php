@@ -180,7 +180,7 @@ class Webservice extends \Magento\Framework\App\Helper\AbstractHelper
                     'weight' => 1
                 );
                 $webservbt = $client->calculateProducts($params);
-                if ($webservbt->return->errorCode == 0 && $webservbt->return->productList) {
+                if ($webservbt->return->errorCode == 0 && isset($webservbt->return->productList)) {
                     if (is_array($webservbt->return->productList)) {
                         foreach ($webservbt->return->productList as $product) {
                             $this->methodsAllowed[] = $product->productCode;
