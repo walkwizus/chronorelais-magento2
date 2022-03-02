@@ -1,0 +1,82 @@
+<script>
+    require([
+        'jquery'
+    ], function($){
+
+        jQuery(document).ready(function(){
+            var carriers_chrono = [
+                "chronopost",
+                "chronoexpress",
+                "chronorelais",
+                "chronopostc10",
+                "chronopostc18",
+                "chronocclassic",
+                "chronorelaiseur",
+                "chronosameday",
+                "chronorelaisdom",
+                "chronopostsrdv"
+            ];
+
+            carriers_chrono.forEach(function (carrier) {
+                var contract = jQuery('#carriers_' + carrier + '_contracts');
+                var options = jQuery('#carriers_' + carrier + '_contracts option');
+                var select_active = jQuery('#carriers_' + carrier + '_active');
+                if(!options || !contract) {
+                    return false;
+                }
+                if(options.length === 0) {
+                    select_active.value = 0;
+                    buildTmpButton(select_active, carrier);
+                    select_active.hide();
+                }
+                if(contract) {
+                    contract.on("change", function (e) {
+                        e.stopPropagation();
+                        checkConfig(select_active, carrier, e.target.value);
+                    });
+                }
+
+            });
+        });
+
+        function checkConfig(select_active, carrier, contractId) {
+            var params = {
+                shippingMethod: carrier,
+                contractId: contractId
+            };
+
+            $.ajax({
+                url: '<?php echo $this->getBaseUrl() . "chronorelais/ajax/checkCarrierConfigContract"; ?>',
+                method: 'GET',
+                data: params,
+                showLoader: true
+            }).success(function(data) {
+                var tmp = $('#tmp-button' + carrier);
+                if(data === "not allowed"){
+                    select_active.val("0").prop('selected', true);
+                    if (tmp.length !== 0) {
+                        tmp.show();
+                    } else {
+                        buildTmpButton(select_active.parent(), carrier);
+                    }
+                    select_active.hide();
+                } else {
+                    if (tmp.length !== 0) {
+                        tmp.hide();
+                    }
+
+                    select_active.removeProp("disabled");
+                    select_active.show();
+                }
+            });
+        }
+
+        function buildTmpButton(container, carrier) {
+            var div = document.createElement('div');
+            div.setAttribute("id", "tmp-button" + carrier);
+            div.innerHTML = "<input style='width:276px;' type='text' disabled value='No'/><div><strong style=\"color:#FF0000;\">Le transporteur n'est pas disponible avec le contrat spécifié.</strong></div>";
+            container.append(div);
+        }
+
+    })
+</script>
