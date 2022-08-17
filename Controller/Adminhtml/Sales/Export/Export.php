@@ -80,7 +80,7 @@ class Export extends AbstractImpression
         }
     }
 
-    public function export($format = 'css', $collection) {
+    public function export($format = 'css', $collection = null) {
         /**
          * Get configuration
          */
