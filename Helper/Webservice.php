@@ -276,7 +276,7 @@ class Webservice extends \Magento\Framework\App\Helper\AbstractHelper
      * @param \Magento\Sales\Model\Order\Shipment $shipment
      * @return array
      */
-    protected function getExpeditionParams(\Magento\Sales\Model\Order\Shipment $shipment, $dimensions = null, $nb_colis, $contractId = null)
+    protected function getExpeditionParams(\Magento\Sales\Model\Order\Shipment $shipment, $dimensions = null, $nb_colis = null, $contractId = null)
     {
         $_order = $shipment->getOrder();
         $_shippingAddress = $shipment->getShippingAddress();
