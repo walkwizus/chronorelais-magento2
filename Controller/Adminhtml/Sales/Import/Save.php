@@ -197,10 +197,10 @@ class Save extends \Magento\Backend\App\Action
                 }
 
                 $shipmentCreated = false;
-                $trackingNumbers = explode(',', trim($trackingNumbers, '[]'));
+                $trackingNumbers = explode(',', trim($trackingNumbers ?? '', '[]'));
                 foreach ($trackingNumbers as $trackingNumber) {
                     $_shipmentsCollection = $order->getShipmentsCollection();
-                    $trackingNumber = trim($trackingNumber);
+                    $trackingNumber = trim($trackingNumber ?? '');
                     $trackData = array(
                         'track_number'    => $trackingNumber,
                         'carrier'         => ucwords($carrier_code),

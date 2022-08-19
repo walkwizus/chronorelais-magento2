@@ -109,14 +109,14 @@ class PrintAction extends Column
                         $url = $this->urlBuilder->getUrl(
                             $viewUrlPath,
                             [
-                                $urlEntityParamName => trim($indexFieldValue)
+                                $urlEntityParamName => trim($indexFieldValue ?? '')
                             ]
                         );
 
                         if(count($indexFieldValues) === 0) {
                             $render = '';
                         } else {
-                            $render = '<a class="printlink" href="'. $url .'">'.trim($indexFieldValue).'</a><br />';
+                            $render = '<a class="printlink" href="'. $url .'">'.trim($indexFieldValue ?? '').'</a><br />';
                         }
                         $item[$this->getData('name')] .=  $render;
                     }

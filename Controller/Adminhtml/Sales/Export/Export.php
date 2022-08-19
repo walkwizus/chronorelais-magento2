@@ -152,7 +152,7 @@ class Export extends AbstractImpression
             $content = $this->_addFieldToCsv($content, $delimiter, $this->getValue($address->getCountryId()));
             $content .= $separator;
             /* telephone */
-            $telephone = trim(preg_replace("[^0-9.-]", " ", $address->getTelephone()));
+            $telephone = trim(preg_replace("[^0-9.-]", " ", $address->getTelephone()) ?? '');
             $telephone = (strlen($telephone) >= 10 ? $telephone : '');
             $content = $this->_addFieldToCsv($content, $delimiter, $telephone);
             $content .= $separator;

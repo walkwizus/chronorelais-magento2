@@ -113,14 +113,14 @@ class RetourAction extends Column
                         $url = $this->urlBuilder->getUrl(
                             $viewUrlPath,
                             [
-                                $urlEntityParamName => trim($indexFieldValue)
+                                $urlEntityParamName => trim($indexFieldValue ?? '')
                             ]
                         );
 
                         if(count($indexFieldValues) === 1) {
                             $item[$this->getData('name')] = '<a href="'.$url.'" class="etiquette_retour_link">'.__('After-sales return').'</a>';
                         } else {
-                            $item[$this->getData('name')] .= '<a href="'.$url.'" class="etiquette_retour_link">'.__('After-sales return').' '.trim($indexFieldValue).'</a><br />';
+                            $item[$this->getData('name')] .= '<a href="'.$url.'" class="etiquette_retour_link">'.__('After-sales return').' '.trim($indexFieldValue ?? '').'</a><br />';
                         }
 
                     }

@@ -374,7 +374,7 @@ abstract class AbstractChronopost extends \Magento\Shipping\Model\Carrier\Abstra
         }
 
         /* récupération du prix via la grille de prix saisie par le client en BO */
-        $config = trim($this->getConfigData('config'));
+        $config = trim($this->getConfigData('config') ?? '');
         if($config) {
             try {
                 $gridPrices = $this->convertStringToArray($config);
@@ -405,7 +405,7 @@ abstract class AbstractChronopost extends \Magento\Shipping\Model\Carrier\Abstra
         foreach($string as $value) {
             $value = explode(":",$value);
             if(isset($value[0]) && isset($value[1])) {
-                $array[trim($value[0])] = trim($value[1]);
+                $array[trim($value[0] ?? '')] = trim($value[1] ?? '');
             }
         }
         return $array;

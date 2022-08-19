@@ -204,7 +204,7 @@ class Webservice extends \Magento\Framework\App\Helper\AbstractHelper
     protected function getFilledValue($value)
     {
         if ($value) {
-            return $this->removeaccents(trim($value));
+            return $this->removeaccents(trim($value ?? ''));
         } else {
             return '';
         }
@@ -334,7 +334,7 @@ class Webservice extends \Magento\Framework\App\Helper\AbstractHelper
         $recipientName2 = $this->getFilledValue($_shippingAddress->getFirstname() . ' ' . $_shippingAddress->getLastname());
         //remove any alphabets in phone number
 
-        $recipientPhone = trim(preg_replace("/[^0-9\.\-]/", " ", $_shippingAddress->getTelephone()));
+        $recipientPhone = trim(preg_replace("/[^0-9\.\-]/", " ", $_shippingAddress->getTelephone()) ?? '');
 
         $recipient = array(
             'recipientAdress1' => substr($this->getFilledValue($recipient_address[0]), 0, 38),
@@ -538,7 +538,7 @@ class Webservice extends \Magento\Framework\App\Helper\AbstractHelper
      */
     protected function checkMobileNumber($value)
     {
-        if ($reqvalue = trim($value)) {
+        if ($reqvalue = trim($value ?? '')) {
             $_number = substr($reqvalue, 0, 2);
             $fixed_array = array('01', '02', '03', '04', '05', '06', '07');
             if (in_array($_number, $fixed_array)) {
@@ -696,7 +696,7 @@ class Webservice extends \Magento\Framework\App\Helper\AbstractHelper
             $recipientName2 = $this->getFilledValue($_shippingAddress->getFirstname() . ' ' . $_shippingAddress->getLastname());
             //remove any alphabets in phone number
 
-            $recipientPhone = trim(preg_replace("/[^0-9\.\-]/", " ", $_shippingAddress->getTelephone()));
+            $recipientPhone = trim(preg_replace("/[^0-9\.\-]/", " ", $_shippingAddress->getTelephone()) ?? '');
             if (!isset($recipient_address[1])) {
                 $recipient_address[1] = '';
             }
