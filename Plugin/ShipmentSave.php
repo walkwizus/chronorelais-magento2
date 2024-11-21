@@ -8,12 +8,17 @@ class ShipmentSave
 {
     protected $_helperShipment;
 
+    protected $contractsOrdersFactory;
+
     protected $_scopeConfig;
 
     protected $_orderFactory;
-    protected $contractsOrdersFactory;
-    protected $request;
-    protected $helperWS;
+
+    protected $_helperData;
+
+    protected $_helperWS;
+    
+    protected $_request;
 
     /**
      * @var HelperData
