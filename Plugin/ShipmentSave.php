@@ -20,11 +20,6 @@ class ShipmentSave
     
     protected $_request;
 
-    /**
-     * @var HelperData
-     */
-    protected $_helperData;
-
     public function __construct(
         \Chronopost\Chronorelais\Helper\Shipment $helperShipment,
         \Chronopost\Chronorelais\Helper\Webservice $helperWS,
